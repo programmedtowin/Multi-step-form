@@ -1,0 +1,614 @@
+/* 
+MUST DO'S: 
+1. Use html formatter or tester
+2. debugger?
+
+*/
+
+/*  
+Javascript:
+ Figure out if you will only make form && buttons  hidden and the rest static.
+ Figure out the logistics to how the botton button and div will work (JS)
+ Figure out reusable code for background when clicked for slide 2 and 3. (Javascript)
+
+ HTML/CSS:
+ Make .form's height auto (dependent on content)
+ Figure out bottom button situation (position absoulute?) 
+
+ Change color of plan-months  ---
+ Figure out how to make hidden month section expand instead of squeeze in. ---
+ Finish designing toggle section
+
+
+Section 3: 
+decide if you will do hover and active psudeo classes
+change color of background, borderline and input checkbox 
+
+
+Javascript: 
+If input is checked - run function
+Figure out if you have to create object with 1. Personal info
+Figure out how you will do the monthly and year plan
+Make numbers dynamic. Based on monthly and yearly rate
+add-ons change color or do it with css hover state?
+Dynamically add the finish up page and calculate total
+Program "Change" anchor to go back to X page. 
+Figure out next, back, confirm dynamically. Also, what you will do with it.
+What model will you use for JS VOC?
+
+Page 1 Js: 
+1. Figure out if you will use MVC for JS
+2. make sure page is set to 1 at the top for page 1 always
+3. Create a system to keep track of the page you are on. 
+4. What will you do with the info? Save and leave there if need to go back
+5. Figure out how you will change Bottom bar (i.e, Maniplate text and btns via JS) 
+6. 
+
+
+active on 1 
+
+*/
+
+@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@800&family=Outfit:wght@400;700&family=Ubuntu:wght@400;500;700&display=swap");
+
+/* Universal styling /////////////////*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "ubuntu", "sans-serif";
+  font-weight: 400;
+  font-size: 12px;
+  background-color: hsl(206, 94%, 87%);
+  z-index: -1;
+}
+
+image {
+  width: 100%;
+}
+
+main {
+  height: auto;
+}
+
+/* Specific selector modifications  */
+
+h1 {
+  color: hsl(213, 96%, 18%);
+}
+
+fieldset {
+  border: none;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+.section-1,
+.section-2,
+.section-3,
+.section-4,
+.section-5 {
+  display: none;
+}
+
+/* background formatting/styling /////////////////////////////*/
+
+.background-design {
+  margin: 0 auto;
+  width: 375px;
+  height: 172px;
+  /* gap: 8px; */
+  background-image: url(../assets/images/bg-sidebar-mobile.svg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.steps {
+  display: block;
+  background-color: transparent;
+  box-sizing: content-box;
+  color: hsl(217, 100%, 97%);
+  border: solid 1px hsl(217, 100%, 97%);
+  font-weight: 700;
+  font-size: 14px;
+  width: 16px;
+  height: 16px;
+  padding: 8px;
+  text-align: center;
+  border-radius: 50%;
+  margin: -25px 7px 50px;
+}
+
+.form {
+  width: 335px;
+  height: auto;
+  margin: -75px auto 0;
+  border-radius: 10px;
+  background-color: hsl(0, 0%, 100%);
+  padding-top: 1px;
+  overflow: auto;
+}
+
+/* Generic Selectors ////////////////////////////////*/
+
+.section {
+  margin: 30px 25px 0;
+}
+
+/* Section 1 styling ///////////////////////////////////*/
+
+.form__heading {
+  margin-bottom: 10px;
+  font-size: 28px;
+  letter-spacing: 1px;
+  color: hsl(213, 96%, 18%);
+  font-weight: bold;
+}
+
+.form__description {
+  color: hsl(231, 11%, 63%);
+  line-height: 1.5;
+  margin-bottom: 20px;
+  font-weight: 400;
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+.form__name {
+  opacity: 0.8;
+}
+
+.label-section {
+  display: flex;
+  justify-content: space-between;
+}
+
+.error-msg {
+  font-size: 10px;
+  align-items: flex-end;
+  margin-bottom: 3px;
+  color: #ff0000;
+}
+
+.name-error {
+  display: none;
+}
+
+.email-error {
+  display: none;
+}
+
+.number-error {
+  display: none;
+}
+.label-name {
+  color: hsl(213, 96%, 18%);
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+
+.input-field {
+  margin-bottom: 15px;
+  font-weight: 700;
+  font-size: 14px;
+  border: 2px solid hsl(229, 24%, 87%);
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.form__phone-number input.input-field:last-child {
+  margin-bottom: 30px; /* Example of adding 10px margin-bottom */
+}
+
+input::placeholder {
+  color: hsl(231, 11%, 63%);
+}
+
+input:focus {
+  outline: none;
+  border: 2px solid hsl(243, 100%, 62%);
+  box-shadow: 0 0 4px hsl(213, 96%, 18%);
+}
+
+/* Section 2 styling ////////////////*/
+
+.plans {
+  border: solid 1px hsl(229, 24%, 87%);
+  border-radius: 10px;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.pro-plan,
+.plan-name,
+.plan-price,
+.arcade-plan,
+.advanced-plan {
+  cursor: pointer;
+}
+
+.arcade-plan,
+.advanced-plan,
+.pro-plan {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+.arcade-plan:hover,
+.arcade-plan:active,
+.advanced-plan:hover,
+.advanced-plan:active,
+.pro-plan:hover,
+.pro-plan:active {
+  border-color: hsl(243, 100%, 62%);
+}
+
+.arcade-plan,
+.advanced-plan {
+  margin-bottom: 10px;
+}
+
+.plan-grid {
+  grid-column: 2 / 3; /* Span the second column */
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.pro-plan {
+  margin-bottom: 20px;
+}
+
+.plan-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: hsl(213, 96%, 18%);
+}
+
+.plan-price {
+  color: hsl(231, 11%, 63%);
+}
+
+.plan-months {
+  color: hsl(213, 96%, 18%);
+  font-size: 10px;
+  grid-column: -2;
+  margin-left: 10px;
+  margin-top: 3px;
+}
+
+.plan-toggle-section {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  background-color: hsl(206, 94%, 87%);
+  border: none;
+  border-radius: 10px;
+}
+
+.toggle-month {
+  color: hsl(213, 96%, 18%);
+  margin-right: 15px;
+}
+
+.toggle-year {
+  color: hsl(231, 11%, 63%);
+  margin-left: 15px;
+}
+
+/* Switch Animation ///////////////////////*/
+#toggle-switch {
+  display: none;
+}
+
+label.switch {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 30px;
+  height: 14px;
+  display: inline-block;
+  background-color: hsl(213, 96%, 18%);
+  border-radius: 100px;
+  position: relative;
+}
+
+label.switch::after {
+  content: "";
+  position: absolute;
+  top: 14%;
+  left: 2px;
+  width: 10px;
+  height: 10px;
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 90px;
+  transition: 0.3s;
+}
+
+input#toggle-switch:checked + label.switch {
+  background: hsl(213, 96%, 18%);
+}
+
+input#toggle-switch:checked + label.switch:after {
+  left: calc(100% - 8%);
+  transform: translateX(-100%);
+}
+
+label.switch:active::after {
+  width: 14px;
+}
+
+/* Section 3 Styling ////////////////////////////////////////////////////*/
+.add-on {
+  border: solid 1px hsl(229, 24%, 87%);
+  border-radius: 7px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.add-on:last-child {
+  margin-bottom: 30px;
+}
+
+input[type="checkbox"]:focus {
+  outline: 2px solid blue; /* Replace "blue" with your desired color */
+  outline: auto; /* Adjust the offset to control the distance from the element */
+  box-shadow: none;
+}
+
+#online-service,
+#larger-storage,
+#customizable-profile {
+  grid-row: 1 / span 2;
+  margin: 0 10px 0 5px;
+  width: 16px;
+  color: hsl(243, 100%, 62%);
+  cursor: pointer;
+}
+
+.online-service:hover,
+.online-service:active,
+.larger-storage:hover,
+.larger-storage:active,
+.customizable-profile:hover,
+.customizable-profile:active {
+  border-color: hsl(243, 100%, 62%);
+}
+
+#online-service:checked,
+#larger-storage:checked,
+#customizable-profile:checked {
+  accent-color: hsl(243, 100%, 62%);
+}
+
+#online-service,
+#larger-storage,
+#customizable-profile,
+.checkbox-container,
+.add-on {
+  cursor: pointer;
+}
+
+.add-on__feature {
+  color: hsl(213, 96%, 18%);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.add-on__description {
+  grid-row: 2 / 3;
+  color: hsl(231, 11%, 63%);
+}
+
+.add-on__price {
+  grid-column: 3 / 4;
+  grid-row: 1 / span 2;
+  color: hsl(243, 100%, 62%);
+  font-weight: 500;
+  display: inherit;
+  align-items: center;
+}
+
+.checkbox-container {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: 1fr 1fr;
+  gap: 2px;
+}
+
+/* Section-4 ////////////////////////////////////////*/
+.form__cart {
+  background-color: hsl(206, 94%, 87%);
+  margin-bottom: 20px;
+  border-radius: 7px;
+  padding: 15px;
+}
+
+.form__plan-container {
+  display: grid;
+  grid-template-columns: 3fr auto;
+  grid-template-rows: 1fr 1fr;
+}
+
+.form__line {
+  display: block;
+  border-bottom: solid 1px hsl(231, 11%, 63%);
+  opacity: 0.4;
+  margin-bottom: 10px;
+}
+
+.form__plan {
+  color: hsl(213, 96%, 18%);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.form__plan-change:hover,
+.form__plan-change:active {
+  color: hsl(243, 100%, 62%);
+}
+
+.form__plan-change {
+  grid-row: 2;
+  cursor: pointer;
+}
+
+.form__plan-price {
+  grid-row: 1 / span 2;
+  display: inherit;
+  align-items: center;
+  color: hsl(213, 96%, 18%);
+  font-weight: 700;
+}
+
+.form__plan-change {
+  color: hsl(231, 11%, 63%);
+  margin-bottom: 10px;
+  text-decoration: underline;
+}
+
+/* add ons */
+
+.form__add-on-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.form__add-on-container:last-child {
+  margin-bottom: 0;
+}
+
+.form__add-on {
+  color: hsl(231, 11%, 63%);
+}
+
+.form__add-on-price {
+  color: hsl(213, 96%, 18%);
+  font-weight: 400;
+}
+
+.form__total-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 15px 25px;
+}
+
+.form__total {
+  color: hsl(231, 11%, 63%);
+}
+
+.form__total-price {
+  color: hsl(243, 100%, 62%);
+  font-weight: 700;
+}
+
+/* Button Section ////////////////////////////////////*/
+
+.btn-section {
+  display: flex;
+  justify-content: space-between;
+  background-color: hsl(0, 0%, 100%);
+  width: 375px;
+  margin: 20px auto;
+  padding: 15px;
+}
+
+.btn {
+  font-size: 12px;
+  font-weight: 700;
+  border: none;
+}
+
+.next-btn {
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/*Toggle switch for hover */
+
+.next {
+  background-color: hsl(213, 96%, 18%);
+  color: hsl(229, 24%, 87%);
+}
+
+.next:hover {
+  background-color: hsl(243, 100%, 62%);
+  color: hsl(217, 100%, 97%);
+}
+
+.confirm {
+  background-color: hsl(243, 100%, 62%);
+  color: hsl(217, 100%, 97%);
+}
+
+.confirm:hover {
+  background-color: hsl(228, 100%, 84%);
+}
+
+.back-btn {
+  color: hsl(231, 11%, 63%);
+  background-color: transparent;
+  cursor: pointer;
+}
+
+/* Section 5 */
+.section-5 {
+  /* display: block; */
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.thank-you-icon {
+  height: 60px;
+  width: 60px;
+  margin-top: 40px;
+  margin-bottom: 25px;
+}
+
+.thank-you-heading {
+  margin-bottom: 20px;
+}
+
+.form__description--thank-you {
+  color: hsl(231, 11%, 63%);
+  line-height: 1.5;
+  /* margin-bottom: 50px; */
+  font-weight: 400;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* Special selectors /////////////*/
+
+.hidden {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+.active-step {
+  background-color: hsl(206, 94%, 87%);
+  color: hsl(213, 96%, 18%);
+}
