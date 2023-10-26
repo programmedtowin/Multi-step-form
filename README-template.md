@@ -79,3 +79,20 @@ const mobileArtWork = document.querySelector(".artwork-container");
     FormNavigationBtns.removeBreak();
   });
 ```
+
+```CSS
+.online-service:hover,
+.online-service:active,
+.larger-storage:hover,
+.larger-storage:active,
+.customizable-profile:hover,
+.customizable-profile:active {
+  border-color: hsl(243, 100%, 62%);
+}
+
+#online-service:checked,
+#larger-storage:checked,
+#customizable-profile:checked {
+  accent-color: hsl(243, 100%, 62%);
+}
+```

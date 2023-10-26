@@ -367,7 +367,7 @@ label.switch:active::after {
 }
 
 input[type="checkbox"]:focus {
-  outline: 2px solid blue; /* Replace "blue" with your desired color */
+  outline: 2px solid blue;
   outline: auto; /* Adjust the offset to control the distance from the element */
   box-shadow: none;
 }
