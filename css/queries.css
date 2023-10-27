@@ -171,4 +171,18 @@
   .back-btn {
     font-size: 14px;
   }
+
+  .next:hover {
+    background-color: hsl(243, 100%, 62%);
+    color: hsl(217, 100%, 97%);
+  }
+
+  .confirm {
+    background-color: hsl(243, 100%, 62%);
+    color: hsl(217, 100%, 97%);
+  }
+
+  .confirm:hover {
+    background-color: hsl(228, 100%, 84%);
+  }
 }
